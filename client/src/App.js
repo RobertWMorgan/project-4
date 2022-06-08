@@ -1,5 +1,6 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import Home from './components/Home'
+import Sidebar from './components/common/Sidebar'
 
 
 import { useEffect } from 'react'
@@ -9,6 +10,7 @@ const App = () => {
   return (
     <main className='site-wrapper'>
       <BrowserRouter>
+        <Sidebar />
         <Routes>
           <Route path='/' element={<Home />} />
 
