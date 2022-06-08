@@ -1,10 +1,11 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import Home from './components/Home'
 import Sidebar from './components/common/Sidebar'
-
+import Calendar from './components/Calendar'
 
 import { useEffect } from 'react'
 import axios from 'axios'
+import ExerciseOverview from './components/ExerciseOverview'
 
 const App = () => {
   return (
@@ -13,9 +14,8 @@ const App = () => {
         <Sidebar />
         <Routes>
           <Route path='/' element={<Home />} />
-
-
-
+          <Route path='/calendar' element={<Calendar />} />
+          <Route path='/exercises' element={<ExerciseOverview />} />
         </Routes>
       </BrowserRouter>
     </main>
