@@ -1,5 +1,5 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
-
+import Home from './components/Home'
 
 
 import { useEffect } from 'react'
@@ -10,7 +10,7 @@ const App = () => {
     <main className='site-wrapper'>
       <BrowserRouter>
         <Routes>
-
+          <Route path='/' element={<Home />} />
 
 
 
