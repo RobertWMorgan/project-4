@@ -1,4 +1,3 @@
-import email
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -52,6 +51,7 @@ class LoginView(APIView):
                 'sub': user_to_register.id,
                 'exp': int(dt.strftime('%s'))
             },
+            # ? REPLACE WITH .ENV
             settings.SECRET_KEY,
             algorithm='HS256'
         )
