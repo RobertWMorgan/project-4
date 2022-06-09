@@ -1,9 +1,9 @@
 
 const Calendar = () => {
   return (
-    <main>
+    <div className="content">
       <h1>Calendar</h1>
-    </main>
+    </div>
   )
 }
 
