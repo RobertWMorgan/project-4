@@ -8,6 +8,7 @@ import jwt
 
 # Serializer
 from .serializers.common import UserSerializer
+from .serializers.populated import PopulatedUserSerializer
 
 # User Model
 from django.contrib.auth import get_user_model
@@ -62,7 +63,7 @@ class UserView(APIView):
     def get(self, _request, pk):
       try:
           user_to_get = User.objects.get(pk=pk)
-          serialized_user = UserSerializer(user_to_get)
+          serialized_user = PopulatedUserSerializer(user_to_get)
           return Response(serialized_user.data, status.HTTP_200_OK)
       except Exception as e:
           return Response(str(e), status.HTTP_422_UNPROCESSABLE_ENTITY)
