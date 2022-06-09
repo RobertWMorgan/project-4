@@ -57,3 +57,12 @@ class LoginView(APIView):
         )
         
         return Response({ 'message': f"Welcome back, {user_to_register.username}", 'token': token }, status.HTTP_202_ACCEPTED)
+
+class UserView(APIView):
+    def get(self, _request, pk):
+      try:
+          user_to_get = User.objects.get(pk=pk)
+          serialized_user = UserSerializer(user_to_get)
+          return Response(serialized_user.data, status.HTTP_200_OK)
+      except Exception as e:
+          return Response(str(e), status.HTTP_422_UNPROCESSABLE_ENTITY)
