@@ -66,7 +66,6 @@ class UserView(APIView):
     
     def get(self, _request, pk):
         user = User.objects.get(pk=pk)
-        print('USER BEING SEARCHED', user)
         serialized_user = PopulatedUserSerializer(user)
         print(serialized_user)
         return Response(serialized_user.data, status.HTTP_200_OK)

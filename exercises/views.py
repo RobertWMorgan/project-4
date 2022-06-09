@@ -17,11 +17,12 @@ class ExerciseListView(APIView):
 
     def post(self,request):
         request.data['createdby'] = request.user.id
+        print(request.data)
         exercise_to_add = ExerciseSerializer(data=request.data)
         print('USER ->', request.user)
         try:
             exercise_to_add.is_valid()
-            print()
+            print(exercise_to_add.errors)
             exercise_to_add.save()
             return Response(exercise_to_add.data, status.HTTP_201_CREATED)
         except Exception as e:
