@@ -1,0 +1,24 @@
+.sidebar-collapsed {
+  background-color: green;
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar-expanded {
+  background-color: red;
+  height: 100%;
+  width: 100%;
+}
+
+.sidebar-open {
+  width: 20%;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.sidebar-closed {
+  width: 10%;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+/*# sourceMappingURL=sidebar.css.map */

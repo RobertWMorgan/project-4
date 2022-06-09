@@ -5,7 +5,7 @@ class Exercise(models.Model):
     grouping = models.CharField(max_length=100, default=None)
     description = models.TextField(max_length=300, blank=True, null=True)
     video_url = models.CharField(max_length=300, blank=True, null=True)
-    createdby = models.ForeignKey(
+    ownder = models.ForeignKey(
       'jwt_auth.User',
       related_name='exercises',
       on_delete= models.CASCADE

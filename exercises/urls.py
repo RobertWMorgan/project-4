@@ -1,7 +1,7 @@
 from django.urls import path
 
 
-urlpatterns = [
-  path('', )
+# urlpatterns = [
+#   path('', )
 
-]
+# ]
