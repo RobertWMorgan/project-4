@@ -1,13 +1,15 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.exceptions import PermissionDenied
+from rest_framework.exceptions import PermissionDenied, NotFound
 from datetime import datetime, timedelta
 from django.conf import settings
 import jwt
 
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+
 # Serializer
-from .serializers.common import UserSerializer
+from .serializers.common import UserSerializer, UserViewSerializer
 from .serializers.populated import PopulatedUserSerializer
 
 # User Model
@@ -60,6 +62,8 @@ class LoginView(APIView):
         return Response({ 'message': f"Welcome back, {user_to_register.username}", 'token': token }, status.HTTP_202_ACCEPTED)
 
 class UserView(APIView):
+    permission_classes = (IsAuthenticatedOrReadOnly, )
+
     def get(self, _request, pk):
       try:
           user_to_get = User.objects.get(pk=pk)
@@ -67,3 +71,22 @@ class UserView(APIView):
           return Response(serialized_user.data, status.HTTP_200_OK)
       except Exception as e:
           return Response(str(e), status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+
+    def put(self, request, pk):
+        try:
+            user_to_edit = User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            raise NotFound('User Not Found')
+
+        if user_to_edit.id != request.user.id:
+            raise PermissionDenied()
+
+        try:
+          deserialized_user = UserViewSerializer(user_to_edit, request.data)
+          deserialized_user.is_valid()
+          print(deserialized_user.errors)
+          deserialized_user.save()
+          return Response(deserialized_user.data, status.HTTP_202_ACCEPTED)
+        except Exception as e:
+            return Response({ 'detail': str(e) }, status.HTTP_422_UNPROCESSABLE_ENTITY)

@@ -28,3 +28,8 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
+
+class UserViewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('age', 'weight', 'goal_weight', 'height', 'age', 'profile_image')
