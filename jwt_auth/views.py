@@ -2,12 +2,14 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.exceptions import PermissionDenied
+from rest_framework.permissions import IsAuthenticated
 from datetime import datetime, timedelta
 from django.conf import settings
 import jwt
 
 # Serializer
 from .serializers.common import UserSerializer
+from .serializers.populated import PopulatedUserSerializer
 
 # User Model
 from django.contrib.auth import get_user_model
@@ -33,6 +35,7 @@ class LoginView(APIView):
 
         email = request.data.get('email')
         password = request.data.get('password')
+        print(request.data)
         try:
             user_to_register = User.objects.get(email=email)
 
@@ -57,3 +60,13 @@ class LoginView(APIView):
         )
         
         return Response({ 'message': f"Welcome back, {user_to_register.username}", 'token': token }, status.HTTP_202_ACCEPTED)
+
+
+class UserView(APIView):
+    
+    def get(self, _request, pk):
+        user = User.objects.get(pk=pk)
+        print('USER BEING SEARCHED', user)
+        serialized_user = PopulatedUserSerializer(user)
+        print(serialized_user)
+        return Response(serialized_user.data, status.HTTP_200_OK)
