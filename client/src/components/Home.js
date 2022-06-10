@@ -3,8 +3,17 @@
 
 const Home = () => {
   return (
-    <main>
-      <h1>Home</h1>
+    <main className='home'>
+      <h1>Brogress</h1>
+      <h3>Track your Gym progress!</h3>
+      <section className='home-auth'>
+        <button className='home-login'>
+          LOGIN
+        </button>
+        <button className='home-register'>
+          REGISTER
+        </button>
+      </section>
     </main>
   )
 }

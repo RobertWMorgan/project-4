@@ -1,6 +1,6 @@
 const ExerciseOverview = () => {
   return (
-    <main>
+    <main className="exercises">
       <h1>Exercises</h1>
     </main>
   )
