@@ -16,7 +16,7 @@ const SidebarExpanded = () => {
           <p>My Exercises</p>
           <img className='nav_icon' src='images/dumbell-grey.png' alt='dumbell'/>
         </span>
-        <span>
+        <span onClick={() => navigate('/calendar')}>
           <p>Exercise Tracker</p>
           <img className='nav_icon' src='images/calendar-grey.png' alt='calendar'/>
         </span>
