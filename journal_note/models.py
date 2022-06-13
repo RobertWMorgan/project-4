@@ -17,5 +17,5 @@ class Note(models.Model):
     distance= models.CharField(max_length=10, default=None, blank=True, null=True)
     reps= models.PositiveIntegerField(default=None)
     date= models.DateField(auto_now_add=True)
-    month = models.CharField(max_length=10, default=None)
+    month = models.CharField(max_length=10, default=None, blank=True, null=True)
     description= models.TextField(max_length=300, default=None, blank=True, null=True) 

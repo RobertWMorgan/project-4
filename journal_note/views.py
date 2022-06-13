@@ -16,6 +16,7 @@ class NoteDetailView(APIView):
         note_to_add = NoteSerializer(data=request.data)
         try:
             note_to_add.is_valid(True)
+            print(note_to_add.errors)
             note_to_add.save()
             return Response(note_to_add.data, status.HTTP_201_CREATED)
         except Exception as e:
