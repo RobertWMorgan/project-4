@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-
+import { getUserName } from '../../../helpers/Auth'
 
 const SidebarExpanded = () => {
   const navigate = useNavigate()
@@ -16,7 +16,7 @@ const SidebarExpanded = () => {
           <p>My Exercises</p>
           <img className='nav_icon' src='images/dumbell-grey.png' alt='dumbell'/>
         </span>
-        <span onClick={() => navigate('/calendar')}>
+        <span onClick={() => navigate(`/calendar/${getUserName()}`)}>
           <p>Exercise Tracker</p>
           <img className='nav_icon' src='images/calendar-grey.png' alt='calendar'/>
         </span>

@@ -12,7 +12,7 @@ const App = () => {
         <Sidebar />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/calendar' element={<CalendarPage />} />
+          <Route path='/calendar/:username' element={<CalendarPage />} />
           <Route path='/exercises' element={<ExerciseOverview />} />
         </Routes>
       </BrowserRouter>

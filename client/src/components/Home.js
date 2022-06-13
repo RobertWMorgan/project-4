@@ -97,7 +97,7 @@ const Home = () => {
     <main className='home'>
       <section className='home-content'>
         <h1>Brogress</h1>
-        <h3>Track your Gym progress!</h3>
+        <h3>Track your gym progress!</h3>
         {isUserAuth()
           ?
           <h5>Welcome Back {getUserName()}!</h5>

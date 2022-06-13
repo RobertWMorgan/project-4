@@ -64,18 +64,18 @@ class LoginView(APIView):
 class UserView(APIView):
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
-    def get(self, _request, pk):
+    def get(self, _request, username):
       try:
-          user_to_get = User.objects.get(pk=pk)
+          user_to_get = User.objects.get(username=username)
           serialized_user = PopulatedUserSerializer(user_to_get)
           return Response(serialized_user.data, status.HTTP_200_OK)
       except Exception as e:
           return Response(str(e), status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 
-    def put(self, request, pk):
+    def put(self, request, username):
         try:
-            user_to_edit = User.objects.get(pk=pk)
+            user_to_edit = User.objects.get(username=username)
         except User.DoesNotExist:
             raise NotFound('User Not Found')
 
