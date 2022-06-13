@@ -8,8 +8,10 @@ const CalendarPage = () => {
   const [date, setDate] = useState(new Date())
   const [userInfo, setUserInfo] = useState('')
   const { username } = useParams()
-
-
+  const [show, setShow] = useState(false)
+  
+  const handleShow = () => setShow(true)
+  const handleClose = () => setShow(false)
 
   useEffect(() => {
     const getUserInfo = async () => {
@@ -66,7 +68,7 @@ const CalendarPage = () => {
         </div>
         <section className='calendar-right'>
           <h2>Exercise Notes </h2>
-          <div>Selected Date: {date.toDateString()}</div>
+          <div><h3>Selected Date: {date.toDateString()}</h3></div>
           <div className='notes-aside'> 
             {!userInfo ?
               <p>Loading...</p>
@@ -83,6 +85,13 @@ const CalendarPage = () => {
                             <h4>{note.exercise.name} - {note.exercise.grouping}</h4>
                             <div>
                               <button value={note.id} className='exercise-note-edit'>Edit</button>
+
+
+
+
+
+
+
                               <button value={note.id} onClick={handleDelete} className='exercise-note-delete'>Delete</button>
                             </div>
                           </div>

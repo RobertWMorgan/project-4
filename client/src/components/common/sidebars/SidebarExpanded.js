@@ -4,6 +4,11 @@ import { getUserName } from '../../../helpers/Auth'
 const SidebarExpanded = () => {
   const navigate = useNavigate()
 
+  const handleLogout = () => {
+    window.localStorage.removeItem('brogress-username')
+    window.localStorage.removeItem('brogress-token')
+    navigate('/')
+  }
   return (
     <div className = 'sidebar-expanded'>
       <p>Login to view profile</p>
@@ -20,7 +25,7 @@ const SidebarExpanded = () => {
           <p>Exercise Tracker</p>
           <img className='nav_icon' src='images/calendar-grey.png' alt='calendar'/>
         </span>
-        <span>
+        <span onClick={handleLogout}>
           <p>Sign Out</p>
           <img className='nav_icon' src='images/power-grey.png' alt='power-button'/>
         </span>
