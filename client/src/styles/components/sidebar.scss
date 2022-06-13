@@ -7,6 +7,8 @@
   flex-direction: column;
   justify-content: space-between;
   max-height: 100vh;
+  position: sticky;
+  top: 0;
 }
 
 .sidebar-expanded{
@@ -18,6 +20,8 @@
   flex-direction: column;
   justify-content: space-between;
   max-height: 100vh;
+  position: sticky;
+  top: 0;
 
   .nav_icons{
     .nav_icon{
