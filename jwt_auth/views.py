@@ -28,7 +28,7 @@ class RegisterView(APIView):
 
         except Exception as e:
             print(e)
-            return Response({ 'detail': str(e) }, status.HTTP_422_UNPROCESSABLE_ENTITY)
+            return Response({ 'detail': user_to_register.errors }, status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 class LoginView(APIView):
 
@@ -59,7 +59,7 @@ class LoginView(APIView):
             algorithm='HS256'
         )
         
-        return Response({ 'message': f"Welcome back, {user_to_register.username}", 'token': token }, status.HTTP_202_ACCEPTED)
+        return Response({ 'message': f"Welcome back, {user_to_register.username}", 'token': token, 'username': user_to_register.username }, status.HTTP_202_ACCEPTED)
 
 class UserView(APIView):
     permission_classes = (IsAuthenticatedOrReadOnly, )
