@@ -69,7 +69,9 @@ class NoteSingleView(APIView):
             return Response({ 'detail': str(e) }, status.HTTP_422_UNPROCESSABLE_ENTITY)
 
     def delete(self, request, pk):
+        print('delete route')
         review_to_delete = Note.objects.get(pk=pk)
+        print(request.user.id, review_to_delete.owner.id)
         if review_to_delete.owner.id != request.user.id:
             raise PermissionDenied()
 

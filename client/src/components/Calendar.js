@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import Calendar from 'react-calendar'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
-import overflow from 'react-bootstrap/'
+import { getUserToken } from '../helpers/Auth'
 
 const CalendarPage = () => {
   const [date, setDate] = useState(new Date())
@@ -41,6 +41,21 @@ const CalendarPage = () => {
     })
   }
 
+  const handleDelete = async (e) => {
+    try {
+      await axios.delete(`/api/notes/${e.target.value}`, {
+        headers: {
+          Authorization: `Bearer ${getUserToken()}`,
+        },
+      })
+      window.location.reload()
+    } catch (error) {
+      console.log(error)
+    }
+    
+    console.log(e.target.value)
+  }
+
 
   return (
     <main className='calendar'>
@@ -52,9 +67,9 @@ const CalendarPage = () => {
         <section className='calendar-right'>
           <h2>Exercise Notes </h2>
           <div>Selected Date: {date.toDateString()}</div>
-          <div className='notes-aside'>
+          <div className='notes-aside'> 
             {!userInfo ?
-              <p>Loading</p>
+              <p>Loading...</p>
               :
               <>
                 {(getNote().length === 0) ?
@@ -68,7 +83,7 @@ const CalendarPage = () => {
                             <h4>{note.exercise.name} - {note.exercise.grouping}</h4>
                             <div>
                               <button value={note.id} className='exercise-note-edit'>Edit</button>
-                              <button className='exercise-note-delete'>Delete</button>
+                              <button value={note.id} onClick={handleDelete} className='exercise-note-delete'>Delete</button>
                             </div>
                           </div>
                           <div className='exercise-notes-details'>
