@@ -143,7 +143,7 @@ const CalendarPage = () => {
             <button className="modal-launch exercise-add-note" onClick={() => {
               handleShowAdd()
             }}>
-              <span className='add-exercise-note-button'>+</span>
+              <span className='add-exercise-note-button'>+ Add New Note</span>
             </button>
             <Modal show={showAddForm} onHide={handleClose}>
               <Modal.Header className="auth-modal-header" closeButton>
