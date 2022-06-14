@@ -140,10 +140,10 @@ const CalendarPage = () => {
           <h2>Exercise Notes </h2>
           <span>
             {/* Add Modal */}
-            <button className="modal-launch" onClick={() => {
+            <button className="modal-launch exercise-add-note" onClick={() => {
               handleShowAdd()
             }}>
-              <span>Add</span>
+              <span className='add-exercise-note-button'>+</span>
             </button>
             <Modal show={showAddForm} onHide={handleClose}>
               <Modal.Header className="auth-modal-header" closeButton>
@@ -241,7 +241,7 @@ const CalendarPage = () => {
                                 handleShowEdit()
                                 setNoteToEdit(note.id)
                               }}>
-                                <span>Edit</span>
+                                <span>✏️</span>
                               </button>
                               <Modal show={showEditForm} onHide={handleClose}>
                                 <Modal.Header className="auth-modal-header" closeButton>
@@ -313,7 +313,7 @@ const CalendarPage = () => {
                               </Modal>
 
 
-                              <button value={note.id} onClick={handleDelete} className='exercise-note-delete'>Delete</button>
+                              <button value={note.id} onClick={handleDelete} className='exercise-note-delete'>🗑</button>
                             </div>
                           </div>
                           <div className='exercise-notes-details'>

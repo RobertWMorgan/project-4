@@ -10,6 +10,9 @@
     margin-top: 3%;
     color: white;
   }
+  h2{
+    display: contents;
+  }
 }
 
 .react-calendar {
@@ -183,9 +186,21 @@
 
   button{
     width: 75%;
+    background-color: #353333;
+    border: none;
   }
   .exercise-not-edit{
     margin-bottom: 5%;
   }
 }
 
+.add-exercise-note-button{
+  color: green;
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+
+.exercise-add-note{
+  background-color: #353333;
+  border: none;
+}
