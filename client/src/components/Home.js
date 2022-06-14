@@ -37,6 +37,7 @@ const Home = () => {
       setTokenToLocalStorage(data.token)
       window.localStorage.setItem('brogress-username', data.username)
       handleClose()
+      window.location.reload()
     } catch (error) {
       setErrors(true)
     }

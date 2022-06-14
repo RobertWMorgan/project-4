@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { getUserName } from '../../../helpers/Auth'
+import { isUserAuth } from '../../../helpers/Auth'
 
 const SidebarCollapsed = () => {
   const location = useLocation()
@@ -16,7 +17,7 @@ const SidebarCollapsed = () => {
   }, [location])
   return (
     <div className='sidebar-collapsed'>
-      <p>Please Login</p>
+      <p className='temp'>.</p>
       <ul className='nav_icons'>
         {
           (currentLocation === '/') ?
@@ -48,7 +49,9 @@ const SidebarCollapsed = () => {
               <img className='nav_icon' src='/images/calendar-grey.png' alt='calendar' />
             </>
         }
+        {isUserAuth() &&
         <img className='nav_icon' src='/images/power-grey.png' alt='power-button' />
+        }
       </ul>
     </div>
   )
