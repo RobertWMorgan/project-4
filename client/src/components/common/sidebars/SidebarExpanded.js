@@ -16,6 +16,7 @@ const SidebarExpanded = () => {
     window.localStorage.removeItem('brogress-username')
     window.localStorage.removeItem('brogress-token')
     navigate('/')
+    window.location.reload()
   }
   return (
     <div className='sidebar-expanded'>
