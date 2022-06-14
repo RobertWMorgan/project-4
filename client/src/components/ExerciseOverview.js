@@ -34,6 +34,28 @@ const ExerciseOverview = () => {
     })
   }
 
+  const imageDisplay = () => {
+    if (filterGroup === 'Abs'){
+      return <img src='/images/abs.png' alt='abs diagram' />
+    } else if (filterGroup === 'Back'){
+      return <img src='/images/back.png' alt='back diagram' />
+    } else if (filterGroup === 'Biceps'){
+      return <img src='/images/biceps.png' alt='biceps diagram' />
+    } else if (filterGroup === 'Cardio'){
+      return <img src='/images/cardio.png' alt='cardio diagram' />
+    } else if (filterGroup === 'Chest'){
+      return <img src='/images/chest.png' alt='chest diagram' />
+    } else if (filterGroup === 'Legs'){
+      return <img src='/images/legs.png' alt='legs diagram' />
+    } else if (filterGroup === 'Shoulders'){
+      return <img src='/images/shoulders.png' alt='shoulders diagram' />
+    } else if (filterGroup === 'Triceps'){
+      return <img src='/images/triceps.png' alt='triceps diagram' />
+    }
+  }
+
+
+
   return (
     <main className="exercises">
       <h1>My Exercises</h1>
@@ -53,30 +75,38 @@ const ExerciseOverview = () => {
           )
         })}
       </ul>
-      <div className='exercise-list-view'>
-        {!userInfo ?
-          <p>Loading...</p>
-          :
-          <>
-            {
-              handleFilter().length === 0 ?
-                <p>No exercises found, please add some</p>
-                :
-                <>
-                  {handleFilter().map((exercise) => {
-                    return (
-                      <div key={exercise.id} className='exercise-card'>
-                        <h3>{exercise.name} - {exercise.grouping}</h3>
-                        <p>{exercise.description}</p>
-                        <p>{exercise.video_url}</p>
-                      </div>
-                    )
-                  })}
-                </>
-            }
-          </>
-        }
+      <div className='exercise-container'>
+        <div className='exercise-list-view'>
+          {!userInfo ?
+            <p>Loading...</p>
+            :
+            <>
+              {
+                handleFilter().length === 0 ?
+                  <p>No exercises found, please add some</p>
+                  :
+                  <>
+                    {handleFilter().map((exercise) => {
+                      return (
+                        <div key={exercise.id} className='exercise-card'>
+                          <h3>{exercise.name}</h3>
+                          <p>{exercise.description}</p>
+                          <a target='_blank' rel='noreferrer' href='exercise.video_url'>Video Guide</a>
+                        </div>
+                      )
+                    })}
+                  </>
+              }
+            </>
+          }
+        </div>
+        
+        <div className='image-container'>
+          {imageDisplay()}
+          
+        </div>
       </div>
+
     </main>
   )
 }
