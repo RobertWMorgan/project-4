@@ -17,6 +17,10 @@ const SidebarExpandedAuth = () => {
     window.location.reload()
   }
 
+  useEffect(() => {
+    setCurrentLocation(location.pathname)
+  }, [location])
+
   return (
     <div className='sidebar-expanded'>
       <p className='temp'></p>
