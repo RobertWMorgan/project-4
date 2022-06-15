@@ -40,10 +40,36 @@ const SidebarExpandedAuth = () => {
     getProfileData()
   }, [])
 
+  // Edit Form
+  
+
   return (
     <div className='sidebar-expanded'>
       <div className='profile'>
-        <img className='profileIcon' src='/images/face.PNG' alt='my face' />
+        <img className='profile-icon' src='/images/face.PNG' alt='my face' />
+        <h2>{profileInfo.username}</h2>
+        <h5>Height:</h5>
+        {
+          !profileInfo.height ?
+            <p>No Height Set</p>
+            :
+            <p>{profileInfo.height}</p>
+        }
+
+        <h5>Weight:</h5>
+        {
+          !profileInfo.weight ?
+            <p>No Weight Set</p>
+            :
+            <p>{profileInfo.weight}</p>
+        }
+        <h5>Goal Weight:</h5>
+        {
+          !profileInfo.goal_weight ?
+            <p>No Goal Set</p>
+            :
+            <p>{profileInfo.goal_weight}</p>
+        }
       </div>
       <ul className='nav_icons'>
         <span onClick={() => navigate('/')}>
@@ -74,7 +100,7 @@ const SidebarExpandedAuth = () => {
               </>
           }
 
-          
+
         </span>
         <span onClick={() => navigate(`/calendar/${getUserName()}`)}>
           {
@@ -97,7 +123,7 @@ const SidebarExpandedAuth = () => {
             <img className='nav_icon' src='/images/power-grey.png' alt='power-button' />
           </span>
         }
-        
+
       </ul>
     </div>
   )
