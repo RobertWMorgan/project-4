@@ -1,6 +1,9 @@
 from email import header
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.exceptions import PermissionDenied
+import environ
+env = environ.Env()
+environ.Env.read_env()
 
 from django.conf import settings
 
@@ -28,7 +31,7 @@ class JWTAuthentication(BasicAuthentication):
         try:
             # Decode the token
             # ? -NEED TO REPLACE SETTINGS.SECRET_KEY WITH .ENV LATER
-            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
+            payload = jwt.decode(token, env('SECRET_KEY'), algorithms=['HS256'])
 
             user = User.objects.get(pk=payload.get('sub'))
 

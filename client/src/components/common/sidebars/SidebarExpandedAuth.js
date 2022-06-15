@@ -41,7 +41,25 @@ const SidebarExpandedAuth = () => {
   }, [])
 
   // Edit Form
-  
+  const [showForm, setShowForm] = useState(false)
+  const handleShowEdit = () => setShowForm(true)
+  const handleClose = () => setShowForm(false)
+
+  const [formData, setFormData] = useState({
+    weight: '',
+    height: '',
+    goal_weight: '',
+  })
+
+  const handleFormChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault()
+    console.log(formData)
+  }
+
 
   return (
     <div className='sidebar-expanded'>

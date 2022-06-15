@@ -11,6 +11,7 @@ pep8 = "*"
 djangorestframework = "*"
 pyjwt = "*"
 autopep8 = "*"
+django-environ = "*"
 
 [dev-packages]
 
