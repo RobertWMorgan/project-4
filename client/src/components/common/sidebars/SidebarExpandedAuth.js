@@ -4,7 +4,6 @@ import { getUserName, isUserAuth, getUserToken } from '../../../helpers/Auth'
 import axios from 'axios'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
-import ImageUpload from '../../../helpers/ImageUpload'
 
 const SidebarExpandedAuth = () => {
   // Navigation
@@ -60,10 +59,6 @@ const SidebarExpandedAuth = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
-    // If no image uploaded, keep old
-    if (formData.profile_image === 0){
-      setFormData({ ...formData, profile_image: profileInfo.profile_image })
-    }
     try {
       console.log(formData)
       await axios.put(`/api/auth/${getUserName()}/`, formData, {
@@ -84,16 +79,59 @@ const SidebarExpandedAuth = () => {
       weight: profileInfo.weight,
       height: profileInfo.height,
       goal_weight: profileInfo.goal_weight,
-      profile_image: profileInfo.profile_image,
     })
+  }
+
+  const handleImageSubmit = (e) => {
+    e.preventDefault()
+
+    const uploadImage = async () => {
+      const uploadURL = process.env.REACT_APP_CLOUDINARY_URL
+      const preset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET
+
+      const data = new FormData()
+      data.append('file', e.target.files[0])
+      data.append('upload_preset', preset)
+
+      try {
+        const res = await axios.post(uploadURL, data)
+        setFormData({ ...formData, profile_image: res.data.url })
+        console.log('data', res.data)
+        changeProfile(res.data.url)
+      } catch (error) {
+        console.log(error.response)
+      }
+    } 
+    
+    const changeProfile = async (imageUrl) => {
+      try {
+        await axios.put(`/api/auth/${getUserName()}/`, { profile_image: imageUrl }, {
+          headers: {
+            Authorization: `Bearer ${getUserToken()}`,
+          },
+        })
+        window.location.reload()
+      } catch (error) {
+        console.log(error.response)
+      }
+    }
+
+
+    uploadImage()
+    console.log(e.target.files[0])
   }
 
   return (
     <div className='sidebar-expanded'>
       <div className='profile'>
         <div className='image-container'>
-          <img className='profile-icon' src={profileInfo.profile_image} alt='my face' />
+          <p>Click to change image</p>
+          <label htmlFor='fileUpload'>
+            <img className='profile-icon' src={profileInfo.profile_image} alt='my face' />
+          </label>
+          <input hidden id='fileUpload' type='file' onChange={handleImageSubmit} />
         </div>
+
         <h2>{profileInfo.username}
           <span>
             <button className="modal-launch" onClick={() => {
@@ -126,7 +164,6 @@ const SidebarExpandedAuth = () => {
                     <Form.Label>Height</Form.Label>
                     <Form.Control value={formData.height} type='text' placeholder='' autoFocus onChange={handleFormChange} name='height' />
                   </Form.Group>
-                  <ImageUpload formData={formData} setFormData={setFormData}/>
                 </Form>
               </Modal.Body>
               <Modal.Footer className="auth-footer">

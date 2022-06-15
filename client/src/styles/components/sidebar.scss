@@ -88,8 +88,8 @@
   align-items: center;
   .image-container{
     border-radius: 50%;
-    width: 50%;
-    height: 40%;
+    width: 200px;
+    height: 200px;
     margin: 10% auto 5% auto;
     border: 2px solid white;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
@@ -98,13 +98,29 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    position: relative;
 
     .profile-icon{
       width: 50%;
       width: 100%;
+    }
 
+    p{
+      display: none;
+      position: absolute;
     }
   }
+
+
+
+  .image-container:hover{
+    filter: brightness(0.7);
+    p{
+      display: inline-block;
+      position: absolute;
+    }
+  }
+
 
   h2{
     color: white;
