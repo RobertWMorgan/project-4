@@ -86,16 +86,39 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  .profile-icon{
+  .image-container{
     border-radius: 50%;
-    width: 33%;
+    width: 50%;
+    height: 40%;
     margin: 10% auto 5% auto;
     border: 2px solid white;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    .profile-icon{
+      width: 50%;
+      width: 100%;
+
+    }
   }
 
   h2{
     color: white;
+    background-color: #333333;
+    display: flex;
+    span{
+      background-color: #333333;
+      font-size: 1rem;
+      margin-left: 10%;
+    }
+    button{
+      background-color: #333333;
+      border: none;
+    }
   }
 
   h5{

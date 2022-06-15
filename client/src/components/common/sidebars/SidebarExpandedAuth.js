@@ -1,8 +1,10 @@
 import { useNavigate, useLocation } from 'react-router-dom'
 import react, { useState, useEffect } from 'react'
-import { getUserName } from '../../../helpers/Auth'
-import { isUserAuth } from '../../../helpers/Auth'
+import { getUserName, isUserAuth, getUserToken } from '../../../helpers/Auth'
 import axios from 'axios'
+import Modal from 'react-bootstrap/Modal'
+import Form from 'react-bootstrap/Form'
+import ImageUpload from '../../../helpers/ImageUpload'
 
 const SidebarExpandedAuth = () => {
   // Navigation
@@ -49,23 +51,97 @@ const SidebarExpandedAuth = () => {
     weight: '',
     height: '',
     goal_weight: '',
+    profile_image: '',
   })
 
   const handleFormChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault()
-    console.log(formData)
+    // If no image uploaded, keep old
+    if (formData.profile_image === 0){
+      setFormData({ ...formData, profile_image: profileInfo.profile_image })
+    }
+    try {
+      console.log(formData)
+      await axios.put(`/api/auth/${getUserName()}/`, formData, {
+        headers: {
+          Authorization: `Bearer ${getUserToken()}`,
+        },
+      })
+      window.location.reload()
+    } catch (error) {
+      console.log(error.response)
+    }
   }
 
+  // Auto populate form
+  const handleDefaultValue = () => {
+    console.log(formData, profileInfo.weight)
+    setFormData({
+      weight: profileInfo.weight,
+      height: profileInfo.height,
+      goal_weight: profileInfo.goal_weight,
+      profile_image: profileInfo.profile_image,
+    })
+  }
 
   return (
     <div className='sidebar-expanded'>
       <div className='profile'>
-        <img className='profile-icon' src='/images/face.PNG' alt='my face' />
-        <h2>{profileInfo.username}</h2>
+        <div className='image-container'>
+          <img className='profile-icon' src={profileInfo.profile_image} alt='my face' />
+        </div>
+        <h2>{profileInfo.username}
+          <span>
+            <button className="modal-launch" onClick={() => {
+              handleShowEdit()
+              handleDefaultValue()
+            }}>
+              <span>✏️</span>
+            </button>
+            <Modal show={showForm} onHide={handleClose}>
+              <Modal.Header className="auth-modal-header" closeButton>
+                <Modal.Title className="auth-modal-title" >Edit Profile</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <Form>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlTextarea1">
+                    <Form.Label>Weight</Form.Label>
+                    <Form.Control value={formData.weight} type='text' placeholder='' autoFocus onChange={handleFormChange} name='weight' />
+                  </Form.Group>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlTextarea1">
+                    <Form.Label>Goal Weight</Form.Label>
+                    <Form.Control value={formData.goal_weight} type='text' placeholder='' autoFocus onChange={handleFormChange} name='goal_weight' />
+                  </Form.Group>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlTextarea1">
+                    <Form.Label>Height</Form.Label>
+                    <Form.Control value={formData.height} type='text' placeholder='' autoFocus onChange={handleFormChange} name='height' />
+                  </Form.Group>
+                  <ImageUpload formData={formData} setFormData={setFormData}/>
+                </Form>
+              </Modal.Body>
+              <Modal.Footer className="auth-footer">
+                <button className='auth-modal-submit' onClick={handleFormSubmit}>
+                  Submit
+                </button>
+                <button className='auth-modal-close' onClick={handleClose}>
+                  Close
+                </button>
+              </Modal.Footer>
+            </Modal>
+
+
+          </span>
+        </h2>
         <h5>Height:</h5>
         {
           !profileInfo.height ?
@@ -73,7 +149,6 @@ const SidebarExpandedAuth = () => {
             :
             <p>{profileInfo.height}</p>
         }
-
         <h5>Weight:</h5>
         {
           !profileInfo.weight ?
