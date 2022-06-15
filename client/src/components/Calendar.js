@@ -267,13 +267,16 @@ const CalendarPage = () => {
                                       <label className="mr-sm-2" htmlFor="inlineFormCustomSelect">Exercise</label>
                                       <select onChange={handleEditChange} name='exercise' className="custom-select mr-sm-2" id="inlineFormCustomSelect">
                                         <option disabled selected>Chose...</option>
-                                        {userInfo.exercises.map((exercise) => {
-                                          if (exercise.grouping === selectedGrouping) {
-                                            return (
-                                              <option key={exercise.id} value={exercise.id}>{exercise.name}</option>
-                                            )
-                                          }
-                                        })}
+                                        {!userInfo.exercises ?
+                                          <p>None</p>
+                                          :
+                                          userInfo.exercises.map((exercise) => {
+                                            if (exercise.grouping === selectedGrouping) {
+                                              return (
+                                                <option key={exercise.id} value={exercise.id}>{exercise.name}</option>
+                                              )
+                                            }
+                                          })}
                                       </select>
                                     </Form.Group>
                                     <Form.Group
