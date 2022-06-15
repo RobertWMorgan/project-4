@@ -2,13 +2,19 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import react, { useState, useEffect } from 'react'
 import { getUserName } from '../../../helpers/Auth'
 import { isUserAuth } from '../../../helpers/Auth'
+import axios from 'axios'
 
 const SidebarExpandedAuth = () => {
-
+  // Navigation
   const navigate = useNavigate()
   const location = useLocation()
 
   const [currentLocation, setCurrentLocation] = useState('/')
+
+  // Finding the active page
+  useEffect(() => {
+    setCurrentLocation(location.pathname)
+  }, [location])
 
   const handleLogout = () => {
     window.localStorage.removeItem('brogress-username')
@@ -17,13 +23,28 @@ const SidebarExpandedAuth = () => {
     window.location.reload()
   }
 
+  // Profile info
+  const [profileInfo, setProfileInfo] = useState('')
+
   useEffect(() => {
-    setCurrentLocation(location.pathname)
-  }, [location])
+    const getProfileData = async () => {
+      try {
+        const { data } = await axios.get(`/api/auth/${getUserName()}`)
+        console.log(data)
+        setProfileInfo(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    getProfileData()
+  }, [])
 
   return (
     <div className='sidebar-expanded'>
-      <p className='temp'></p>
+      <div className='profile'>
+        <img className='profileIcon' src='/images/face.PNG' alt='my face' />
+      </div>
       <ul className='nav_icons'>
         <span onClick={() => navigate('/')}>
           {
