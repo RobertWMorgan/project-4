@@ -11,7 +11,7 @@ const Sidebar = () => {
       onMouseLeave={() => setIsNavHover(false)}
     >
       {isNavHover ? 
-        <SidebarExpanded /> 
+        <SidebarExpanded isNavHover={isNavHover} setIsNavHover={setIsNavHover} /> 
         :
         <SidebarCollapsed />}
     </div>

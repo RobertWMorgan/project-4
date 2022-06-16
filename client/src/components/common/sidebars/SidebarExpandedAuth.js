@@ -5,7 +5,7 @@ import axios from 'axios'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 
-const SidebarExpandedAuth = () => {
+const SidebarExpandedAuth = ({ isNavHover, setIsNavHover }) => {
   // Navigation
   const navigate = useNavigate()
   const location = useLocation()
@@ -129,7 +129,7 @@ const SidebarExpandedAuth = () => {
           <label htmlFor='fileUpload'>
             <img className='profile-icon' src={profileInfo.profile_image} alt='my face' />
           </label>
-          <input hidden id='fileUpload' type='file' onChange={handleImageSubmit} />
+          <input hidden id='fileUpload' type='file' onClick={setIsNavHover(true)} onChange={handleImageSubmit} />
         </div>
 
         <h2>{profileInfo.username}
