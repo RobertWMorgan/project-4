@@ -13,7 +13,6 @@ const SidebarCollapsed = () => {
 
   useEffect(() => {
     setCurrentLocation(location.pathname)
-    console.log(location.pathname)
   }, [location])
   return (
     <div className='sidebar-collapsed'>

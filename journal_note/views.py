@@ -20,7 +20,7 @@ class NoteDetailView(APIView):
             note_to_add.save()
             return Response(note_to_add.data, status.HTTP_201_CREATED)
         except Exception as e:
-            return Response({ 'detail': str(e) }, status.HTTP_422_UNPROCESSABLE_ENTITY)
+            return Response({ 'detail': note_to_add.errors }, status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 # class NoteMonthView(APIView):
 #     permission_classes = (IsAuthenticated, )
@@ -50,7 +50,7 @@ class NoteSingleView(APIView):
           return Response(serialized_note.data, status.HTTP_200_OK)
 
       except Exception as e:
-          return Response({ 'detail': str(e) }, status.HTTP_422_UNPROCESSABLE_ENTITY)
+          return Response({ serialized_note.errors }, status.HTTP_422_UNPROCESSABLE_ENTITY)
     
 
     def put(self, request, pk):
@@ -67,7 +67,7 @@ class NoteSingleView(APIView):
 
             return Response(serialized_note.data, status.HTTP_202_ACCEPTED)
         except Exception as e:
-            return Response({ 'detail': str(e) }, status.HTTP_422_UNPROCESSABLE_ENTITY)
+            return Response({ 'detail': serialized_note.errors }, status.HTTP_422_UNPROCESSABLE_ENTITY)
 
     def delete(self, request, pk):
         print('delete route')

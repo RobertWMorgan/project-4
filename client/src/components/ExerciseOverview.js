@@ -32,7 +32,6 @@ const ExerciseOverview = () => {
 
   const handleClick = (e) => {
     setFilterGroup(e.target.value)
-    console.log(e.target.value)
   }
 
   const handleFilter = () => {
@@ -94,6 +93,7 @@ const ExerciseOverview = () => {
       window.location.reload()
     } catch (error) {
       console.log(error)
+      setErrors(error.response.data.detail)
     }
   }
 
@@ -118,10 +118,10 @@ const ExerciseOverview = () => {
           Authorization: `Bearer ${getUserToken()}`,
         },
       })
-      console.log('posted')
       window.location.reload()
     } catch (error) {
-      console.log(error)
+      console.log(error.response.data.detail)
+      setErrors(error.response.data.detail)
     }
   }
 
@@ -144,7 +144,6 @@ const ExerciseOverview = () => {
     const exerciseSelected = userInfo.exercises.filter((exercise, id) => {
       return exercise.id === exerciseId
     })
-    console.log(exerciseSelected)
 
     setFormEditData({
       name: exerciseSelected[0].name,
@@ -157,6 +156,18 @@ const ExerciseOverview = () => {
   const [showVideo, setShowVideo] = useState(false)
   const handleVideoClose = () => setShowVideo(false)
   const handleVideoShow = () => setShowVideo(true)
+
+  const [videoToDisplay, setVideoToDisplay] = useState('')
+  const setCurrentVideo = (vid) => {
+    setVideoToDisplay(vid)
+  }
+
+  const [errors, setErrors] = useState({
+    grouping: '',
+    exercise: '',
+    description: '',
+    video_url: '',
+  })
 
   return (
     <main className="exercises">
@@ -192,7 +203,8 @@ const ExerciseOverview = () => {
             <Modal.Body>
               <Form>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                  <label className="mr-sm-2" htmlFor="inlineFormCustomSelect">Muscle Group</label>
+                  <p className='denied-text'>* Required</p>
+                  <label className="mr-sm-2 form-label" htmlFor="inlineFormCustomSelect">Muscle Group<p className='denied-text'>*</p></label>
                   <select onChange={handleAddChange} name='grouping' className="custom-select mr-sm-2" id="inlineFormCustomSelect">
                     <option disabled selected>Choose...</option>
                     <option value='Abs'>Abs</option>
@@ -204,24 +216,28 @@ const ExerciseOverview = () => {
                     <option value='Shoulders'>Shoulders</option>
                     <option value='Triceps'>Triceps</option>
                   </select>
+                  {errors.grouping && <p className='denied-text'>{errors.grouping}</p>}
                 </Form.Group>
                 <Form.Group
                   className="mb-3"
                   controlId="exampleForm.ControlTextarea1">
-                  <Form.Label>Exercise Name</Form.Label>
+                  <Form.Label>Exercise Name<p className='denied-text'>*</p></Form.Label>
                   <Form.Control type='text' placeholder='' autoFocus onChange={handleAddChange} name='name' />
+                  {errors.exercise && <p className='denied-text'>{errors.exercise}</p>}
                 </Form.Group>
                 <Form.Group
                   className="mb-3"
                   controlId="exampleForm.ControlTextarea1">
                   <Form.Label>Description</Form.Label>
                   <Form.Control type='text' placeholder='' autoFocus onChange={handleAddChange} name='description' />
+                  {errors.description && <p className='denied-text'>{errors.description}</p>}
                 </Form.Group>
                 <Form.Group
                   className="mb-3"
                   controlId="exampleForm.ControlTextarea1">
                   <Form.Label>Video tutorial</Form.Label>
                   <Form.Control type='text' placeholder='' autoFocus onChange={handleAddChange} name='video_url' />
+                  {errors.video_url && <p className='denied-text'>{errors.video_url}</p>}
                 </Form.Group>
               </Form>
             </Modal.Body>
@@ -261,8 +277,9 @@ const ExerciseOverview = () => {
                             </Modal.Header>
                             <Modal.Body>
                               <Form>
+                                <p className='denied-text'>* Required</p>
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                  <label className="mr-sm-2" htmlFor="inlineFormCustomSelect">Muscle Group</label>
+                                  <label className="mr-sm-2 form-label" htmlFor="inlineFormCustomSelect">Muscle Group<p className='denied-text'>*</p></label>
                                   <select onChange={handleEditChange} value={formEditData.grouping} name='grouping' className="custom-select mr-sm-2" id="inlineFormCustomSelect">
                                     <option disabled selected>Choose...</option>
                                     <option value='Abs'>Abs</option>
@@ -274,24 +291,28 @@ const ExerciseOverview = () => {
                                     <option value='Shoulders'>Shoulders</option>
                                     <option value='Triceps'>Triceps</option>
                                   </select>
+                                  {errors.grouping && <p className='denied-text'>{errors.grouping}</p>}
                                 </Form.Group>
                                 <Form.Group
                                   className="mb-3"
                                   controlId="exampleForm.ControlTextarea1">
-                                  <Form.Label>Exercise Name</Form.Label>
+                                  <Form.Label>Exercise Name<p className='denied-text'>*</p></Form.Label>
                                   <Form.Control type='text' value={formEditData.name} placeholder='' autoFocus onChange={handleEditChange} name='name' />
+                                  {errors.name && <p className='denied-text'>{errors.name}</p>}
                                 </Form.Group>
                                 <Form.Group
                                   className="mb-3"
                                   controlId="exampleForm.ControlTextarea1">
                                   <Form.Label>Description</Form.Label>
                                   <Form.Control type='text' value={formEditData.description} placeholder='' autoFocus onChange={handleEditChange} name='description' />
+                                  {errors.description && <p className='denied-text'>{errors.description}</p>}
                                 </Form.Group>
                                 <Form.Group
                                   className="mb-3"
                                   controlId="exampleForm.ControlTextarea1">
                                   <Form.Label>Video tutorial</Form.Label>
                                   <Form.Control type='text' value={formEditData.video_url} placeholder='' autoFocus onChange={handleEditChange} name='video_url' />
+                                  {errors.video_url && <p className='denied-text'>{errors.video_url}</p>}
                                 </Form.Group>
                               </Form>
                             </Modal.Body>
@@ -308,15 +329,18 @@ const ExerciseOverview = () => {
                           <p>{exercise.description}</p>
                           <>
 
-                            <button onClick={handleVideoShow}>
-                              Launch demo modal
+                            <button className='video-button' onClick={() => {
+                              handleVideoShow()
+                              setCurrentVideo(exercise.video_url)
+                            }}>
+                              Video Tutorial
                             </button>
 
                             <Modal show={showVideo} onHide={handleVideoClose}>
                               <Modal.Header closeButton>
-                                <Modal.Title>Modal heading</Modal.Title>
+                                <Modal.Title>Tutorial Video</Modal.Title>
                               </Modal.Header>
-                              <Modal.Body><YoutubeEmbed embedUrl={exercise.video_url} /></Modal.Body>
+                              <Modal.Body><YoutubeEmbed embedUrl={videoToDisplay} /></Modal.Body>
                               <Modal.Footer>
                               </Modal.Footer>
                             </Modal>

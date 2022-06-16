@@ -24,7 +24,7 @@ class ExerciseListView(APIView):
         except ValidationError:
             return Response(exercise_to_add.errors, status.HTTP_422_UNPROCESSABLE_ENTITY)
         except Exception as e:
-            return Response({ 'detail': str(e) }, status.HTTP_422_UNPROCESSABLE_ENTITY)
+            return Response({ 'detail': exercise_to_add.errors }, status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 class ExerciseDetailView(APIView):
     permission_classes = (IsAuthenticated, )
@@ -58,4 +58,4 @@ class ExerciseDetailView(APIView):
             return Response(deserialized_exercise.data, status.HTTP_202_ACCEPTED)
         except Exception as e:
             print(e)
-            return Response({ 'detail': str(e) }, status.HTTP_422_UNPROCESSABLE_ENTITY)
+            return Response({ 'detail': deserialized_exercise.errors }, status.HTTP_422_UNPROCESSABLE_ENTITY)

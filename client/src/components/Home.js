@@ -66,6 +66,7 @@ const Home = () => {
         setRegisterStatus(true)
       } catch (error) {
         setErrors(error.response.data.detail)
+        console.log(error.response)
       }
     }
   }
@@ -153,7 +154,8 @@ const Home = () => {
               <Modal.Body>
                 <Form>
                   <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label>Username</Form.Label>
+                    <p className='denied-text'>* Required</p>
+                    <Form.Label>Username<p className='denied-text'>*</p></Form.Label>
                     <Form.Control
                       type="text"
                       placeholder=""
@@ -163,7 +165,7 @@ const Home = () => {
                     {errors.username && <p className='denied-text'>{errors.username}</p>}
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label>Email Address</Form.Label>
+                    <Form.Label>Email Address<p className='denied-text'>*</p></Form.Label>
                     <Form.Control
                       type="text"
                       placeholder=""
@@ -175,13 +177,13 @@ const Home = () => {
                   <Form.Group
                     className="mb-3"
                     controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label>Password<p className='denied-text'>*</p></Form.Label>
                     <Form.Control type='password' placeholder='' autoFocus onChange={handleRegisterChange} name='password' />
                   </Form.Group>
                   <Form.Group
                     className="mb-3"
                     controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>Confirm Password</Form.Label>
+                    <Form.Label>Confirm Password<p className='denied-text'>*</p></Form.Label>
                     <Form.Control type='password' placeholder='' autoFocus onChange={handleRegisterChange} name='password_confirmation' />
                     {passwordError && <p className='denied-text'>Passwords must match</p>}
                   </Form.Group>

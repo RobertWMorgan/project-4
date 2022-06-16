@@ -1,7 +1,7 @@
-import React from 'react'
 
 const YoutubeEmbed = ({ embedUrl }) => {
   const newUrl = embedUrl.replace('watch?v=', 'embed/')
+  console.log({ embedUrl })
   return (
     <div className="video-responsive">
       <iframe

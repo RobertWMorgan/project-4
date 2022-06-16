@@ -124,6 +124,14 @@ const CalendarPage = () => {
     exercise: '',
   })
 
+  const [errors, setErrors] = useState({
+    weight: '',
+    distance: '',
+    reps: '',
+    description: '',
+    exercise: '',
+  })
+
   const handleAddChange = (e) => {
     setFormAddData({ ...formAddData, [e.target.name]: e.target.value })
   }
@@ -143,7 +151,7 @@ const CalendarPage = () => {
       console.log('posted')
       window.location.reload()
     } catch (error) {
-      console.log(error)
+      setErrors(error.response.data.detail)
     }
   }
 
@@ -158,7 +166,7 @@ const CalendarPage = () => {
       console.log('posted')
       window.location.reload()
     } catch (error) {
-      console.log(error.response)
+      setErrors(error.response.data.detail)
     }
   }
 
@@ -185,7 +193,8 @@ const CalendarPage = () => {
               <Modal.Body>
                 <Form>
                   <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <label className="mr-sm-2" htmlFor="inlineFormCustomSelect">Category</label>
+                    <p className='denied-text'>* Required</p>
+                    <label className="mr-sm-2 form-label" htmlFor="inlineFormCustomSelect">Category<p className='denied-text'>*</p></label>
                     <select onChange={handleGroupingChange} className="custom-select mr-sm-2" id="inlineFormCustomSelect">
                       <option disabled selected>Choose...</option>
                       <option value='Abs'>Abs</option>
@@ -199,7 +208,7 @@ const CalendarPage = () => {
                     </select>
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <label className="mr-sm-2" htmlFor="inlineFormCustomSelect">Exercise</label>
+                    <label className="mr-sm-2 form-label" htmlFor="inlineFormCustomSelect">Exercise<p className='denied-text'>*</p></label>
                     <select onChange={handleAddChange} name='exercise' className="custom-select mr-sm-2" id="inlineFormCustomSelect">
                       <option disabled selected>Chose...</option>
                       {!userInfo.exercises ?
@@ -213,6 +222,7 @@ const CalendarPage = () => {
                           }
                         })}
                     </select>
+                    {errors.exercise && <p className='denied-text'>{errors.exercise}</p>}
                   </Form.Group>
                   <Form.Group
                     className="mb-3"
@@ -229,8 +239,9 @@ const CalendarPage = () => {
                   <Form.Group
                     className="mb-3"
                     controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>Reps</Form.Label>
+                    <Form.Label>Reps<p className='denied-text'>*</p></Form.Label>
                     <Form.Control type='number' placeholder='' autoFocus onChange={handleAddChange} name='reps' />
+                    {errors.reps && <p className='denied-text'>{errors.reps}</p>}
                   </Form.Group>
                   <Form.Group
                     className="mb-3"
@@ -284,7 +295,8 @@ const CalendarPage = () => {
                                 <Modal.Body>
                                   <Form>
                                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                      <label className="mr-sm-2" htmlFor="inlineFormCustomSelect">Category</label>
+                                      <p className='denied-text'>* Required</p>
+                                      <label className="mr-sm-2 form-label" htmlFor="inlineFormCustomSelect">Category<p className='denied-text'>*</p></label>
                                       <select onChange={handleGroupingChange} className="custom-select mr-sm-2" id="inlineFormCustomSelect">
                                         <option disabled selected>Choose...</option>
                                         <option value='Abs'>Abs</option>
@@ -298,9 +310,9 @@ const CalendarPage = () => {
                                       </select>
                                     </Form.Group>
                                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                      <label className="mr-sm-2" htmlFor="inlineFormCustomSelect">Exercise</label>
+                                      <label className="mr-sm-2 form-label" htmlFor="inlineFormCustomSelect">Exercise<p className='denied-text'>*</p></label>
                                       <select onChange={handleEditChange} name='exercise' className="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                        <option disabled selected>Chose...</option>
+                                        <option disabled selected>Choose...</option>
                                         {!userInfo.exercises ?
                                           <p>None</p>
                                           :
@@ -312,6 +324,7 @@ const CalendarPage = () => {
                                             }
                                           })}
                                       </select>
+                                      {errors.exercise && <p className='denied-text'>{errors.exercise}</p>}
                                     </Form.Group>
                                     <Form.Group
                                       className="mb-3"
@@ -328,8 +341,9 @@ const CalendarPage = () => {
                                     <Form.Group
                                       className="mb-3"
                                       controlId="exampleForm.ControlTextarea1">
-                                      <Form.Label>Reps</Form.Label>
+                                      <Form.Label>Reps<p className='denied-text'>*</p></Form.Label>
                                       <Form.Control type='number' value={formEditData.reps} placeholder='' autoFocus onChange={handleEditChange} name='reps' />
+                                      {errors.reps && <p className='denied-text'>{errors.reps}</p>}
                                     </Form.Group>
                                     <Form.Group
                                       className="mb-3"
