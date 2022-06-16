@@ -5,6 +5,9 @@ from rest_framework.exceptions import PermissionDenied, NotFound
 from datetime import datetime, timedelta
 from django.conf import settings
 import jwt
+import environ
+env = environ.Env()
+environ.Env.read_env()
 
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
@@ -55,7 +58,7 @@ class LoginView(APIView):
                 'exp': int(dt.strftime('%s'))
             },
             # ? REPLACE WITH .ENV
-            settings.SECRET_KEY,
+            env('SECRET_KEY'),
             algorithm='HS256'
         )
         

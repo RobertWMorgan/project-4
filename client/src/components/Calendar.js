@@ -68,7 +68,32 @@ const CalendarPage = () => {
   const [showEditForm, setShowEditForm] = useState(false)
   const [showAddForm, setShowAddForm] = useState(false)
 
-  const handleShowEdit = () => setShowEditForm(true)
+  const handleShowEdit = () => {
+    setShowEditForm(true)
+  }
+
+  const handleDefaultValue = async (id) => {
+    try {
+      const { data } = await axios.get(`/api/notes/${id}`, {
+        headers: {
+          Authorization: `Bearer ${getUserToken()}`,
+        },
+      })
+      setFormEditData({
+        weight: data.weight,
+        distance: data.distance,
+        reps: data.reps,
+        description: data.description,
+        exercise: data.exercise,
+      })
+      console.log(data)
+    } catch (error) {
+      console.log(error.response)
+    }
+    
+  }
+
+    
   const handleShowAdd = () => setShowAddForm(true)
   const handleClose = () => {
     setShowEditForm(false)
@@ -143,7 +168,7 @@ const CalendarPage = () => {
             <button className="modal-launch exercise-add-note" onClick={() => {
               handleShowAdd()
             }}>
-              <span className='add-exercise-note-button'>+</span>
+              <span className='add-exercise-note-button'>+ Add New Note</span>
             </button>
             <Modal show={showAddForm} onHide={handleClose}>
               <Modal.Header className="auth-modal-header" closeButton>
@@ -238,8 +263,9 @@ const CalendarPage = () => {
 
                               {/* Edit Modal */}
                               <button value={note.id} className="modal-launch" onClick={() => {
-                                handleShowEdit()
                                 setNoteToEdit(note.id)
+                                handleShowEdit()
+                                handleDefaultValue(note.id)
                               }}>
                                 <span>✏️</span>
                               </button>
@@ -267,38 +293,41 @@ const CalendarPage = () => {
                                       <label className="mr-sm-2" htmlFor="inlineFormCustomSelect">Exercise</label>
                                       <select onChange={handleEditChange} name='exercise' className="custom-select mr-sm-2" id="inlineFormCustomSelect">
                                         <option disabled selected>Chose...</option>
-                                        {userInfo.exercises.map((exercise) => {
-                                          if (exercise.grouping === selectedGrouping) {
-                                            return (
-                                              <option key={exercise.id} value={exercise.id}>{exercise.name}</option>
-                                            )
-                                          }
-                                        })}
+                                        {!userInfo.exercises ?
+                                          <p>None</p>
+                                          :
+                                          userInfo.exercises.map((exercise) => {
+                                            if (exercise.grouping === selectedGrouping) {
+                                              return (
+                                                <option key={exercise.id} value={exercise.id}>{exercise.name}</option>
+                                              )
+                                            }
+                                          })}
                                       </select>
                                     </Form.Group>
                                     <Form.Group
                                       className="mb-3"
                                       controlId="exampleForm.ControlTextarea1">
                                       <Form.Label>Weight</Form.Label>
-                                      <Form.Control type='text' placeholder='' autoFocus onChange={handleEditChange} name='weight' />
+                                      <Form.Control value={formEditData.weight} type='text' placeholder='' autoFocus onChange={handleEditChange} name='weight' />
                                     </Form.Group>
                                     <Form.Group
                                       className="mb-3"
                                       controlId="exampleForm.ControlTextarea1">
                                       <Form.Label>Distance</Form.Label>
-                                      <Form.Control type='text' placeholder='' autoFocus onChange={handleEditChange} name='distance' />
+                                      <Form.Control type='text' value={formEditData.distance} placeholder='' autoFocus onChange={handleEditChange} name='distance' />
                                     </Form.Group>
                                     <Form.Group
                                       className="mb-3"
                                       controlId="exampleForm.ControlTextarea1">
                                       <Form.Label>Reps</Form.Label>
-                                      <Form.Control type='number' placeholder='' autoFocus onChange={handleEditChange} name='reps' />
+                                      <Form.Control type='number' value={formEditData.reps} placeholder='' autoFocus onChange={handleEditChange} name='reps' />
                                     </Form.Group>
                                     <Form.Group
                                       className="mb-3"
                                       controlId="exampleForm.ControlTextarea1">
                                       <Form.Label>Comment</Form.Label>
-                                      <Form.Control type='text' placeholder='' autoFocus onChange={handleEditChange} name='description' />
+                                      <Form.Control type='text' value={formEditData.description} placeholder='' autoFocus onChange={handleEditChange} name='description' />
                                     </Form.Group>
                                   </Form>
                                 </Modal.Body>

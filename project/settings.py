@@ -138,3 +138,10 @@ REST_FRAMEWORK = {
         'jwt_auth.authentication.JWTAuthentication'
     ]
 }
+
+import environ
+
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
+
