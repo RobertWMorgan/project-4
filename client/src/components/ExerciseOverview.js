@@ -4,6 +4,8 @@ import { getUserName, getUserToken } from '../helpers/Auth'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import { useNavigate } from 'react-router-dom'
+import YoutubeEmbed from '../helpers/YoutubeEmbed'
+import Button from 'react-bootstrap/Button'
 
 const ExerciseOverview = () => {
   const navigate = useNavigate()
@@ -16,7 +18,7 @@ const ExerciseOverview = () => {
         const { data } = await axios.get(`/api/auth/${getUserName()}`)
         setUserInfo(data)
         console.log(data)
-        
+
       } catch (error) {
         console.log(error)
         navigate('/')
@@ -123,7 +125,7 @@ const ExerciseOverview = () => {
     }
   }
 
-  
+
   const handleDelete = async (e) => {
     try {
       await axios.delete(`/api/exercises/${e.target.value}`, {
@@ -151,6 +153,10 @@ const ExerciseOverview = () => {
       video_url: exerciseSelected[0].video_url,
     })
   }
+
+  const [showVideo, setShowVideo] = useState(false)
+  const handleVideoClose = () => setShowVideo(false)
+  const handleVideoShow = () => setShowVideo(true)
 
   return (
     <main className="exercises">
@@ -300,7 +306,21 @@ const ExerciseOverview = () => {
                           </Modal>
                           <button value={exercise.id} onClick={handleDelete} className='exercise-delete-button'>🗑</button>
                           <p>{exercise.description}</p>
-                          <a target='_blank' rel='noreferrer' href='exercise.video_url'>Video Guide</a>
+                          <>
+
+                            <button onClick={handleVideoShow}>
+                              Launch demo modal
+                            </button>
+
+                            <Modal show={showVideo} onHide={handleVideoClose}>
+                              <Modal.Header closeButton>
+                                <Modal.Title>Modal heading</Modal.Title>
+                              </Modal.Header>
+                              <Modal.Body><YoutubeEmbed embedUrl={exercise.video_url} /></Modal.Body>
+                              <Modal.Footer>
+                              </Modal.Footer>
+                            </Modal>
+                          </>
                         </div>
                       )
                     })}
