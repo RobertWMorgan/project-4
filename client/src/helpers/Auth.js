@@ -17,10 +17,10 @@ export const isUserAuth = () => {
   return payLoad.exp > currentTime
 }
 
-export const isUserOwner = (plant) => {
+export const isUserOwner = (exercise) => {
   const payLoad = getPayLoad()
   if (!payLoad) return
-  return plant.addedBy._id === payLoad.sub
+  return exercise.addedBy._id === payLoad.sub
 }
 
 export const getUserToken = () => {

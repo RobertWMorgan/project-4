@@ -1,11 +1,12 @@
 import react, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { getUserName } from '../helpers/Auth'
+import { getUserName, getUserToken } from '../helpers/Auth'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
-import { getUserToken } from '../helpers/Auth'
+import { useNavigate } from 'react-router-dom'
 
 const ExerciseOverview = () => {
+  const navigate = useNavigate()
   const [userInfo, setUserInfo] = useState('')
   const [filterGroup, setFilterGroup] = useState('')
 
@@ -15,8 +16,10 @@ const ExerciseOverview = () => {
         const { data } = await axios.get(`/api/auth/${getUserName()}`)
         setUserInfo(data)
         console.log(data)
+        
       } catch (error) {
         console.log(error)
+        navigate('/')
       }
     }
 
@@ -134,6 +137,21 @@ const ExerciseOverview = () => {
     }
   }
 
+  const handlePopulate = (id) => {
+    const exerciseId = id
+    const exerciseSelected = userInfo.exercises.filter((exercise, id) => {
+      return exercise.id === exerciseId
+    })
+    console.log(exerciseSelected)
+
+    setFormEditData({
+      name: exerciseSelected[0].name,
+      grouping: exerciseSelected[0].grouping,
+      description: exerciseSelected[0].description,
+      video_url: exerciseSelected[0].video_url,
+    })
+  }
+
   return (
     <main className="exercises">
       <h1>My Exercises</h1>
@@ -227,6 +245,7 @@ const ExerciseOverview = () => {
                           <button className="modal-launch edit-exercise-button" onClick={() => {
                             handleShowEdit()
                             SetExerciseToEdit(exercise.id)
+                            handlePopulate(exercise.id)
                           }}>
                             <span className='add-exercise-note-button-text'>✏️</span>
                           </button>
@@ -238,7 +257,7 @@ const ExerciseOverview = () => {
                               <Form>
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                   <label className="mr-sm-2" htmlFor="inlineFormCustomSelect">Muscle Group</label>
-                                  <select onChange={handleEditChange} name='grouping' className="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                  <select onChange={handleEditChange} value={formEditData.grouping} name='grouping' className="custom-select mr-sm-2" id="inlineFormCustomSelect">
                                     <option disabled selected>Choose...</option>
                                     <option value='Abs'>Abs</option>
                                     <option value='Back'>Back</option>
@@ -254,19 +273,19 @@ const ExerciseOverview = () => {
                                   className="mb-3"
                                   controlId="exampleForm.ControlTextarea1">
                                   <Form.Label>Exercise Name</Form.Label>
-                                  <Form.Control type='text' placeholder='' autoFocus onChange={handleEditChange} name='name' />
+                                  <Form.Control type='text' value={formEditData.name} placeholder='' autoFocus onChange={handleEditChange} name='name' />
                                 </Form.Group>
                                 <Form.Group
                                   className="mb-3"
                                   controlId="exampleForm.ControlTextarea1">
                                   <Form.Label>Description</Form.Label>
-                                  <Form.Control type='text' placeholder='' autoFocus onChange={handleEditChange} name='description' />
+                                  <Form.Control type='text' value={formEditData.description} placeholder='' autoFocus onChange={handleEditChange} name='description' />
                                 </Form.Group>
                                 <Form.Group
                                   className="mb-3"
                                   controlId="exampleForm.ControlTextarea1">
                                   <Form.Label>Video tutorial</Form.Label>
-                                  <Form.Control type='text' placeholder='' autoFocus onChange={handleEditChange} name='video_url' />
+                                  <Form.Control type='text' value={formEditData.video_url} placeholder='' autoFocus onChange={handleEditChange} name='video_url' />
                                 </Form.Group>
                               </Form>
                             </Modal.Body>

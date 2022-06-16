@@ -2,12 +2,15 @@ import { useState, useEffect } from 'react'
 import Calendar from 'react-calendar'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
-import { getUserToken } from '../helpers/Auth'
+import { getUserToken, getUserName } from '../helpers/Auth'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
+import { useNavigate } from 'react-router-dom'
 
 
 const CalendarPage = () => {
+  const navigate = useNavigate()
+
   const [date, setDate] = useState(new Date())
   const [userInfo, setUserInfo] = useState('')
   const { username } = useParams()
@@ -25,6 +28,11 @@ const CalendarPage = () => {
         const { data } = await axios.get(`/api/auth/${username}`)
         setUserInfo(data)
         console.log(data)
+
+        if ( username !== getUserName() ){
+          navigate('/')
+        }
+        
       } catch (error) {
         console.log(error)
       }
