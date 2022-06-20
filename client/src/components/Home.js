@@ -132,7 +132,6 @@ const Home = () => {
                 </Form>
               </Modal.Body>
               <Modal.Footer className="auth-footer">
-                {errors && <p className='denied-text'>Please enter the correct login details</p>}
                 <button className='auth-modal-submit' onClick={handleLoginSubmit}>
                   Login
                 </button>
