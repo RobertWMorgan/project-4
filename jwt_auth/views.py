@@ -41,15 +41,13 @@ class LoginView(APIView):
         password = request.data.get('password')
         try:
             user_to_register = User.objects.get(email=email)
-
+            print(user_to_register)
         # User doesn't exist
         except User.DoesNotExist:
             raise PermissionDenied('Invalid login details')
-
         # Wrong Password
         if not user_to_register.check_password(password):
             raise PermissionDenied('Invalid login details')
-
         # Building the token
         dt = datetime.now() + timedelta(hours=3)
         token = jwt.encode(
@@ -61,8 +59,15 @@ class LoginView(APIView):
             env('SECRET_KEY'),
             algorithm='HS256'
         )
-        
         return Response({ 'message': f"Welcome back, {user_to_register.username}", 'token': token, 'username': user_to_register.username }, status.HTTP_202_ACCEPTED)
+
+
+
+
+
+
+
+
 
 class UserView(APIView):
     permission_classes = (IsAuthenticatedOrReadOnly, )
