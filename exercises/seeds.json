@@ -1,0 +1,255 @@
+[
+{
+  "model": "exercises.exercise",
+  "pk": 1,
+  "fields": {
+    "name": "Planks",
+    "grouping": "Abs",
+    "description": "Lying on the ground, prop yourself up into a plank position. Make sure your elbows are aligned underneath your shoulders. Your forearms should be parallel to one another.",
+    "video_url": "https://www.youtube.com/watch?v=kL_NJAkCQBg",
+    "owner": 1
+  }
+},
+{
+  "model": "exercises.exercise",
+  "pk": 2,
+  "fields": {
+    "name": "Situps",
+    "grouping": "Abs",
+    "description": "Keep your feet, hips and knees aligned with knees bent and feet flat on the floor, exhale on your way up and inhale as you return to the start position.",
+    "video_url": "https://www.youtube.com/watch?v=1fbU_MkV7NE",
+    "owner": 1
+  }
+},
+{
+  "model": "exercises.exercise",
+  "pk": 3,
+  "fields": {
+    "name": "Russian twist",
+    "grouping": "Abs",
+    "description": "Knees bent and fleet flat on the ground. Lean back to a 45 degree angle, lift your feet and rotate your arms side to side",
+    "video_url": "https://www.youtube.com/watch?v=wkD8rjkodUI",
+    "owner": 1
+  }
+},
+{
+  "model": "exercises.exercise",
+  "pk": 4,
+  "fields": {
+    "name": "Leg raise",
+    "grouping": "Abs",
+    "description": "Lie-down flat on the floor. Keep legs straight and raise them until they are pointing at the sky. Lower them back down until they are almost touching the floor.",
+    "video_url": "https://www.youtube.com/watch?v=JB2oyawG9KI",
+    "owner": 1
+  }
+},
+{
+  "model": "exercises.exercise",
+  "pk": 5,
+  "fields": {
+    "name": "Deadlift",
+    "grouping": "Back",
+    "description": "Keep feet shoulder-width apart, hands just outside legs. Lift the bar by driving hips forward. Make sure back is flat throughout.",
+    "video_url": "https://www.youtube.com/watch?v=op9kVnSso6Q",
+    "owner": 1
+  }
+},
+{
+  "model": "exercises.exercise",
+  "pk": 6,
+  "fields": {
+    "name": "Reverse fly",
+    "grouping": "Back",
+    "description": "Regular fly but leaning forward. Can be done seated or standing",
+    "video_url": "https://www.youtube.com/watch?v=JoCRRZ3zRtI",
+    "owner": 1
+  }
+},
+{
+  "model": "exercises.exercise",
+  "pk": 7,
+  "fields": {
+    "name": "Barbell Row",
+    "grouping": "Back",
+    "description": "Start with feet under bar. Lift chest and keep a straight back. Pull bar against lower chest.",
+    "video_url": "https://www.youtube.com/watch?v=kBWAon7ItDw",
+    "owner": 1
+  }
+},
+{
+  "model": "exercises.exercise",
+  "pk": 8,
+  "fields": {
+    "name": "Dumbbell Row",
+    "grouping": "Back",
+    "description": "Bend over using a stable object for support. Pull dumbbells up to your chest squeezing shoulder blades together at the top.",
+    "video_url": "https://www.youtube.com/watch?v=roCP6wCXPqo",
+    "owner": 1
+  }
+},
+{
+  "model": "exercises.exercise",
+  "pk": 9,
+  "fields": {
+    "name": "Dumbbell curl",
+    "grouping": "Biceps",
+    "description": "Hold dumbbells with your arms hanging by your sides, palms facing forward. Keep arms stationary and curl weights up to shoulder level.",
+    "video_url": "https://www.youtube.com/watch?v=Nkl8WnH6tDU",
+    "owner": 1
+  }
+},
+{
+  "model": "exercises.exercise",
+  "pk": 10,
+  "fields": {
+    "name": "Barbell curl",
+    "grouping": "Biceps",
+    "description": "Stand tall with chest up and core braced. Hold the bar with an underhand grip. Curl the bar to shoulder height keeping biceps tensed",
+    "video_url": "https://www.youtube.com/watch?v=LY1V6UbRHFM",
+    "owner": 1
+  }
+},
+{
+  "model": "exercises.exercise",
+  "pk": 11,
+  "fields": {
+    "name": "Running",
+    "grouping": "Cardio",
+    "description": "Keep shoulders down, head straight and lean forward slightly.",
+    "video_url": "https://www.youtube.com/watch?v=kVnyY17VS9Y",
+    "owner": 1
+  }
+},
+{
+  "model": "exercises.exercise",
+  "pk": 12,
+  "fields": {
+    "name": "Swimming",
+    "grouping": "Cardio",
+    "description": "",
+    "video_url": "https://www.youtube.com/watch?v=Rr_CnIfr5u8",
+    "owner": 1
+  }
+},
+{
+  "model": "exercises.exercise",
+  "pk": 13,
+  "fields": {
+    "name": "Barbell bench press",
+    "grouping": "Chest",
+    "description": "Lie flat on your back. Grip the bar with hands wider than shoulder-width apart. Bring bar slowly down onto chest. Push up on the bar until arms are extended.",
+    "video_url": "https://www.youtube.com/watch?v=gRVjAtPip0Y",
+    "owner": 1
+  }
+},
+{
+  "model": "exercises.exercise",
+  "pk": 14,
+  "fields": {
+    "name": "Push-up",
+    "grouping": "Chest",
+    "description": "Palms-down on the floor, shoulder width apart. Push up to a plank position. Lower yourself and repeat.",
+    "video_url": "https://www.youtube.com/watch?v=IODxDxX7oi4",
+    "owner": 1
+  }
+},
+{
+  "model": "exercises.exercise",
+  "pk": 15,
+  "fields": {
+    "name": "Dumbbell bench press",
+    "grouping": "Chest",
+    "description": "Set up a bench at an incline of 30-45° and sit with your back on the bench. Lift the dumbbells to chest height and push the dumbbells up until your arms are fully extended",
+    "video_url": "https://www.youtube.com/watch?v=VmB1G1K7v94",
+    "owner": 1
+  }
+},
+{
+  "model": "exercises.exercise",
+  "pk": 16,
+  "fields": {
+    "name": "Barbell back squat",
+    "grouping": "Legs",
+    "description": "Feet shoulder-width apart, feet pointing forward and back straight. \"Sit\" back down and descend until your hips are below your knees. Keep your weight on your heels as you drive back up.",
+    "video_url": "https://www.youtube.com/watch?v=SW_C1A-rejs",
+    "owner": 1
+  }
+},
+{
+  "model": "exercises.exercise",
+  "pk": 17,
+  "fields": {
+    "name": "Romanian deadlift",
+    "grouping": "Legs",
+    "description": "Stand with weight in your hands as opposed to the floor. Slowly lower the weight with a slight bend in your knees and keeping your back straight. Lower until you feel a slight stretch in your hamstrings.",
+    "video_url": "https://www.youtube.com/watch?v=2SHsk9AzdjA",
+    "owner": 1
+  }
+},
+{
+  "model": "exercises.exercise",
+  "pk": 18,
+  "fields": {
+    "name": "Calf raise",
+    "grouping": "Legs",
+    "description": "Stand up straight, then push through the balls of your feet and raise your heel until you are standing on your toes. Then lower slowly back to the start.",
+    "video_url": "https://www.youtube.com/watch?v=gwLzBJYoWlI",
+    "owner": 1
+  }
+},
+{
+  "model": "exercises.exercise",
+  "pk": 19,
+  "fields": {
+    "name": "Box jumps",
+    "grouping": "Legs",
+    "description": "Stand in front of the box with your feet shoulder-width apart. Bend into a quarter squat and swing your arms back, then swing them forward and explode up off the ground. Land on the box as softly as possible.",
+    "video_url": "https://www.youtube.com/watch?v=hxldG9FX4j4",
+    "owner": 1
+  }
+},
+{
+  "model": "exercises.exercise",
+  "pk": 20,
+  "fields": {
+    "name": "Skull crushers",
+    "grouping": "Triceps",
+    "description": "Lie flat on the bench with arms shoulder length apart and palm grip facing the ceiling. Extend elbows to push it out.",
+    "video_url": "https://www.youtube.com/watch?v=d_KZxkY_0cM",
+    "owner": 1
+  }
+},
+{
+  "model": "exercises.exercise",
+  "pk": 21,
+  "fields": {
+    "name": "Tricep dip",
+    "grouping": "Triceps",
+    "description": "Lower your body whilst keeping your chest high and open to avoid hunching forward. Keep your elbows tucked directly behind your shoulder blades to protect your joints.",
+    "video_url": "https://www.youtube.com/watch?v=qrS6aa0aQ9I",
+    "owner": 1
+  }
+},
+{
+  "model": "exercises.exercise",
+  "pk": 22,
+  "fields": {
+    "name": "Lateral raise",
+    "grouping": "Shoulders",
+    "description": "Raise your arms laterally (with any additional weights) until they are at a 90° angle with the rest of the body. Slowly lower the arms to the side of the body and repeat.",
+    "video_url": "https://www.youtube.com/watch?v=3VcKaXpzqRo",
+    "owner": 1
+  }
+},
+{
+  "model": "exercises.exercise",
+  "pk": 23,
+  "fields": {
+    "name": "Overhead press",
+    "grouping": "Shoulders",
+    "description": "With your feet shoulder length apart, lift the barbell over your head. Hold for a few seconds and then gradually lower the barbell to the starting position.",
+    "video_url": "https://www.youtube.com/watch?v=2yjwXTZQDDI",
+    "owner": 1
+  }
+}
+]

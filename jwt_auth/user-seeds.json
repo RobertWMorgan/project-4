@@ -1,0 +1,25 @@
+[
+{
+  "model": "jwt_auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$320000$lD6LqdJ0xiQNt2a0M3zTh8$8w9Z/8c6RO5mNY38BgUwYGgxgt6+PLt8kQHRqzseIdM=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-06-16T15:58:36.990Z",
+    "email": "user@email.com",
+    "username": "Test User",
+    "weight": "123",
+    "goal_weight": "123",
+    "height": "123",
+    "age": null,
+    "profile_image": "http://res.cloudinary.com/dnfyg2vts/image/upload/v1655479297/project-4/ggdqdrdobtdx1mh65odd.jpg",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
