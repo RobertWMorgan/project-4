@@ -1,5 +1,5 @@
-import os
 import django_on_heroku
+import os
 
 
 """
@@ -58,11 +58,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'project.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'client')
-                  ]  #Look, we have added the root folder of frontend here
+                 ]  #Look, we have added the root folder of frontend here
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -151,9 +152,6 @@ import environ
 env = environ.Env()
 environ.Env.read_env()
 
-ROOT_URLCONF = 'project.urls' #check if you have this already, if not add it in
-
-STATIC_URL = '/static/' # same with this
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'client', "build", "static"),
