@@ -5,6 +5,7 @@ from rest_framework.exceptions import PermissionDenied, NotFound
 from datetime import datetime, timedelta
 from django.conf import settings
 import jwt
+
 import environ
 env = environ.Env()
 environ.Env.read_env()
@@ -57,7 +58,6 @@ class LoginView(APIView):
                 'sub': user_to_register.id,
                 'exp': int(dt.strftime('%s'))
             },
-            # ? REPLACE WITH .ENV
             env('SECRET_KEY'),
             algorithm='HS256'
         )
