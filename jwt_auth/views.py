@@ -44,6 +44,7 @@ class LoginView(APIView):
             print(user_to_register)
         # User doesn't exist
         except User.DoesNotExist:
+            print(user_to_register, 'incorrect pw')
             raise PermissionDenied('Invalid login details')
         # Wrong Password
         if not user_to_register.check_password(password):
@@ -59,6 +60,7 @@ class LoginView(APIView):
             env('SECRET_KEY'),
             algorithm='HS256'
         )
+
         return Response({ 'message': f"Welcome back, {user_to_register.username}", 'token': token, 'username': user_to_register.username }, status.HTTP_202_ACCEPTED)
 
 
