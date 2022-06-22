@@ -61,6 +61,7 @@ class LoginView(APIView):
             env('SECRET_KEY'),
             algorithm='HS256'
         )
+        print(token)
 
         return Response({ 'message': f"Welcome back, {user_to_register.username}", 'token': token, 'username': user_to_register.username }, status.HTTP_202_ACCEPTED)
 
