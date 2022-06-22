@@ -44,10 +44,11 @@ class LoginView(APIView):
             print(user_to_register)
         # User doesn't exist
         except User.DoesNotExist:
-            print(user_to_register, 'incorrect pw')
+            print(user_to_register, 'does not exist')
             raise PermissionDenied('Invalid login details')
         # Wrong Password
         if not user_to_register.check_password(password):
+            print(user_to_register, 'incorrect pw')
             raise PermissionDenied('Invalid login details')
         # Building the token
         dt = datetime.now() + timedelta(hours=3)
