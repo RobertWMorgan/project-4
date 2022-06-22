@@ -39,6 +39,7 @@ const Home = () => {
       handleClose()
       window.location.reload()
     } catch (error) {
+      console.log(error.response)
       setErrors(true)
     }
   }
