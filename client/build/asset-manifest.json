@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/static/css/main.6780662f.css",
-    "main.js": "/static/js/main.593f3de9.js",
+    "main.js": "/static/js/main.6d0685b7.js",
     "static/media/fitness-wallpaper.jpeg": "/static/media/fitness-wallpaper.c6b326480fca00130673.jpeg",
     "static/media/calendar-bg.jpeg": "/static/media/calendar-bg.73e115ef450501d0a0e3.jpeg",
     "index.html": "/index.html",
     "main.6780662f.css.map": "/static/css/main.6780662f.css.map",
-    "main.593f3de9.js.map": "/static/js/main.593f3de9.js.map"
+    "main.6d0685b7.js.map": "/static/js/main.6d0685b7.js.map"
   },
   "entrypoints": [
     "static/css/main.6780662f.css",
-    "static/js/main.593f3de9.js"
+    "static/js/main.6d0685b7.js"
   ]
 }
