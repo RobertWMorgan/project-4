@@ -35,6 +35,7 @@ const Home = () => {
       const { data } = await axios.post('/api/auth/login/', loginFormData)
       console.log(data)
       setTokenToLocalStorage(data.token)
+      console.log(data.token)
       window.localStorage.setItem('brogress-username', data.username)
       handleClose()
       window.location.reload()
