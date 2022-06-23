@@ -69,7 +69,7 @@ class LoginView(APIView):
 
 
 
-
+# View profile
 
 class UserView(APIView):
     permission_classes = (IsAuthenticatedOrReadOnly, )
