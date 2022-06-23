@@ -37,12 +37,10 @@ class RegisterView(APIView):
 class LoginView(APIView):
 
     def post(self, request):
-        print('hit the login route, ', request.data)
         email = request.data.get('email')
         password = request.data.get('password')
         try:
             user_to_register = User.objects.get(email=email)
-            print(user_to_register)
         # User doesn't exist
         except User.DoesNotExist:
             print(user_to_register, 'does not exist')
