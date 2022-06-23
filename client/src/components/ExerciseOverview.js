@@ -35,7 +35,7 @@ const ExerciseOverview = () => {
   }
 
   const handleFilter = () => {
-    if (userInfo.exercises !== 0 && userInfo){
+    if (userInfo){
       return userInfo.exercises.filter(exercise => {
         return exercise.grouping.includes(filterGroup)
       })
