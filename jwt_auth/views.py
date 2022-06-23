@@ -80,7 +80,7 @@ class UserView(APIView):
           serialized_user = PopulatedUserSerializer(user_to_get)
           return Response(serialized_user.data, status.HTTP_200_OK)
       except Exception as e:
-          return Response(serialized_user.errors, status.HTTP_422_UNPROCESSABLE_ENTITY)
+          return Response({ 'detail': str(e) }, status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 
     def put(self, request, username):
