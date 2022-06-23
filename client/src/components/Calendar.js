@@ -364,7 +364,7 @@ const CalendarPage = () => {
                                 </Modal.Footer>
                               </Modal>
 
-
+                              {/* Delete Note */}
                               <button value={note.id} onClick={handleDelete} className='exercise-note-delete'>🗑</button>
                             </div>
                           </div>
