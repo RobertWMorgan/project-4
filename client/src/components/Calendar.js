@@ -42,6 +42,7 @@ const CalendarPage = () => {
   }, [])
 
   const getNote = () => {
+    console.log(userInfo)
 
     if (userInfo){
       return userInfo.notes.filter(note => {
