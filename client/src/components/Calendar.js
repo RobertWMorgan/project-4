@@ -42,22 +42,19 @@ const CalendarPage = () => {
   }, [])
 
   const getNote = () => {
+    return userInfo.notes.filter(note => {
 
-    if (userInfo.notes.length !== 0){
-      return userInfo.notes.filter(note => {
+      const noteDate = new Date(note.date)
+      const noteString = noteDate.toString()
+      const dateString = date.toString()
 
-        const noteDate = new Date(note.date)
-        const noteString = noteDate.toString()
-        const dateString = date.toString()
-  
-        const noteFormatted = noteString.substr(0, 15)
-        const dateFormatted = dateString.substr(0, 15)
-  
-        if (noteFormatted === dateFormatted) {
-          return note
-        }
-      })
-    }
+      const noteFormatted = noteString.substr(0, 15)
+      const dateFormatted = dateString.substr(0, 15)
+
+      if (noteFormatted === dateFormatted) {
+        return note
+      }
+    })
 
   }
 
