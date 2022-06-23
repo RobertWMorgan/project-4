@@ -35,9 +35,11 @@ const ExerciseOverview = () => {
   }
 
   const handleFilter = () => {
-    return userInfo.exercises.filter(exercise => {
-      return exercise.grouping.includes(filterGroup)
-    })
+    if (userInfo.exercises !== 0 && userInfo){
+      return userInfo.exercises.filter(exercise => {
+        return exercise.grouping.includes(filterGroup)
+      })
+    }
   }
 
   const imageDisplay = () => {

@@ -43,7 +43,7 @@ const CalendarPage = () => {
 
   const getNote = () => {
 
-    if (userInfo.notes !== 0){
+    if (userInfo.notes !== 0 && userInfo){
       return userInfo.notes.filter(note => {
         const noteDate = new Date(note.date)
         const noteString = noteDate.toString()
