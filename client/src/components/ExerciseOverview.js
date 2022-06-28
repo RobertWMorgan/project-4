@@ -34,14 +34,14 @@ const ExerciseOverview = () => {
     setFilterGroup(e.target.value)
   }
 
-  const handleFilter = () => {
-    console.log(userInfo)
-    if (userInfo && userInfo.exercises){
-      return userInfo.exercises.filter(exercise => {
-        return exercise.grouping.includes(filterGroup)
-      })
-    }
-  }
+  // const handleFilter = () => {
+  //   console.log(userInfo)
+  //   if (userInfo && userInfo.exercises){
+  //     return userInfo.exercises.filter(exercise => {
+  //       return exercise.grouping.includes(filterGroup)
+  //     })
+  //   }
+  // }
 
   const imageDisplay = () => {
     if (filterGroup === 'Abs') {
@@ -257,102 +257,8 @@ const ExerciseOverview = () => {
             <p>Loading...</p>
             :
             <>
-              {
-                handleFilter.length === 0 ?
-                  <p>No exercises found, please add some</p>
-                  :
-                  <>
-                    {handleFilter.map((exercise) => {
-                      return (
-                        <div key={exercise.id} className='exercise-card'>
-                          <h3>{exercise.name}</h3>
-                          {/* Edit Modal */}
-                          <button className="modal-launch edit-exercise-button" onClick={() => {
-                            handleShowEdit()
-                            SetExerciseToEdit(exercise.id)
-                            handlePopulate(exercise.id)
-                          }}>
-                            <span className='add-exercise-note-button-text'>✏️</span>
-                          </button>
-                          <Modal show={showEditForm} onHide={handleClose}>
-                            <Modal.Header className="auth-modal-header" closeButton>
-                              <Modal.Title className="auth-modal-title" >Edit Exercise</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                              <Form>
-                                <p className='denied-text'>* Required</p>
-                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                  <label className="mr-sm-2 form-label" htmlFor="inlineFormCustomSelect">Muscle Group<p className='denied-text'>*</p></label>
-                                  <select onChange={handleEditChange} value={formEditData.grouping} name='grouping' className="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                    <option disabled selected>Choose...</option>
-                                    <option value='Abs'>Abs</option>
-                                    <option value='Back'>Back</option>
-                                    <option value='Biceps'>Biceps</option>
-                                    <option value='Cardio'>Cardio</option>
-                                    <option value='Chest'>Chest</option>
-                                    <option value='Legs'>Legs</option>
-                                    <option value='Shoulders'>Shoulders</option>
-                                    <option value='Triceps'>Triceps</option>
-                                  </select>
-                                  {errors.grouping && <p className='denied-text'>{errors.grouping}</p>}
-                                </Form.Group>
-                                <Form.Group
-                                  className="mb-3"
-                                  controlId="exampleForm.ControlTextarea1">
-                                  <Form.Label>Exercise Name<p className='denied-text'>*</p></Form.Label>
-                                  <Form.Control type='text' value={formEditData.name} placeholder='' autoFocus onChange={handleEditChange} name='name' />
-                                  {errors.name && <p className='denied-text'>{errors.name}</p>}
-                                </Form.Group>
-                                <Form.Group
-                                  className="mb-3"
-                                  controlId="exampleForm.ControlTextarea1">
-                                  <Form.Label>Description</Form.Label>
-                                  <Form.Control type='text' value={formEditData.description} placeholder='' autoFocus onChange={handleEditChange} name='description' />
-                                  {errors.description && <p className='denied-text'>{errors.description}</p>}
-                                </Form.Group>
-                                <Form.Group
-                                  className="mb-3"
-                                  controlId="exampleForm.ControlTextarea1">
-                                  <Form.Label>Video tutorial</Form.Label>
-                                  <Form.Control type='text' value={formEditData.video_url} placeholder='' autoFocus onChange={handleEditChange} name='video_url' />
-                                  {errors.video_url && <p className='denied-text'>{errors.video_url}</p>}
-                                </Form.Group>
-                              </Form>
-                            </Modal.Body>
-                            <Modal.Footer className="auth-footer">
-                              <button className='auth-modal-submit' onClick={handleEditSubmit}>
-                                Submit
-                              </button>
-                              <button className='auth-modal-close' onClick={handleClose}>
-                                Close
-                              </button>
-                            </Modal.Footer>
-                          </Modal>
-                          <button value={exercise.id} onClick={handleDelete} className='exercise-delete-button'>🗑</button>
-                          <p>{exercise.description}</p>
-                          <>
-
-                            <button className='video-button' onClick={() => {
-                              handleVideoShow()
-                              setCurrentVideo(exercise.video_url)
-                            }}>
-                              Video Tutorial
-                            </button>
-
-                            <Modal show={showVideo} onHide={handleVideoClose}>
-                              <Modal.Header closeButton>
-                                <Modal.Title>Tutorial Video</Modal.Title>
-                              </Modal.Header>
-                              <Modal.Body><YoutubeEmbed embedUrl={videoToDisplay} /></Modal.Body>
-                              <Modal.Footer>
-                              </Modal.Footer>
-                            </Modal>
-                          </>
-                        </div>
-                      )
-                    })}
-                  </>
-              }
+              <p>test</p>
+              
             </>
           }
         </div>
