@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button'
 
 const ExerciseOverview = () => {
   const navigate = useNavigate()
-  const [userInfo, setUserInfo] = useState('')
+  const [userInfo, setUserInfo] = useState(false)
   const [filterGroup, setFilterGroup] = useState('')
 
   useEffect(() => {
@@ -35,6 +35,7 @@ const ExerciseOverview = () => {
   }
 
   const handleFilter = () => {
+    console.log(userInfo)
     if (userInfo && userInfo.exercises){
       return userInfo.exercises.filter(exercise => {
         return exercise.grouping.includes(filterGroup)
@@ -252,7 +253,7 @@ const ExerciseOverview = () => {
               </button>
             </Modal.Footer>
           </Modal>
-          {!userInfo ?
+          {!userInfo.exercises ?
             <p>Loading...</p>
             :
             <>
