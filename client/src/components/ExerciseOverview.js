@@ -258,11 +258,11 @@ const ExerciseOverview = () => {
             :
             <>
               {
-                handleFilter().length === 0 ?
+                handleFilter.length === 0 ?
                   <p>No exercises found, please add some</p>
                   :
                   <>
-                    {handleFilter().map((exercise) => {
+                    {handleFilter.map((exercise) => {
                       return (
                         <div key={exercise.id} className='exercise-card'>
                           <h3>{exercise.name}</h3>
