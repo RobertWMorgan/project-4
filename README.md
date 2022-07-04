@@ -1,5 +1,5 @@
 # project-4 Brogress
-[Link to project](https://brogress.herokuapp.com/)
+[Link to project]
 
 Brogress was the 4th project I made during the GA SEI course. This was a 10 day solo project where we had to produjce a fullstack project using Django, PSQL and React. 
 
